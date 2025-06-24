@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forward Chaining Penyakit Tanaman Cabai</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 80%;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #4caf50;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        display: block;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .result {
+        margin-top: 20px;
+        text-align: center;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+      }
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Tabel Penyakit -->
+      <h2>Daftar Penyakit Tanaman Cabai</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Kode Penyakit</th>
+            <th>Nama Penyakit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>T01</td>
+            <td>Penyakit Layu Bakteri (Pseudomonas solanacearum)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>T02</td>
+            <td>Penyakit Antraknosa (Patek)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>T03</td>
+            <td>Penyakit Embun Tepung (Oidium sp.)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Tabel Aturan Diagnosa (IF-THEN) -->
+      <h2>Aturan Diagnosa (IF-THEN)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Kondisi (IF)</th>
+            <th>Tindakan (THEN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              IF G001 is true AND G002 is true AND G003 is true AND G004 is true
+              AND G005 is true AND G006 is true AND G007 is true
+            </td>
+            <td>
+              THEN Diagnosis: Penyakit Layu Bakteri (Pseudomonas solanacearum)
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>
+              IF G006 is true AND G007 is true AND G008 is true AND G009 is true
+              AND G010 is true AND G011 is true
+            </td>
+            <td>THEN Diagnosis: Penyakit Antraknosa (Patek)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>IF G008 is true AND G009 is true AND G010 is true</td>
+            <td>THEN Diagnosis: Penyakit Embun Tepung (Oidium sp.)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1>Diagnosa Penyakit Tanaman Cabai</h1>
+
+      <!-- Form untuk memilih gejala -->
+      <div class="form-group">
+        <label for="gejala1">Gejala 1: Daun kuning pucat (G001):</label>
+        <input type="checkbox" id="gejala1" />
+      </div>
+      <div class="form-group">
+        <label for="gejala2">Gejala 2: Tanaman kerdil dan layu (G002):</label>
+        <input type="checkbox" id="gejala2" />
+      </div>
+      <div class="form-group">
+        <label for="gejala3">Gejala 3: Batang coklat kemerahan (G003):</label>
+        <input type="checkbox" id="gejala3" />
+      </div>
+      <div class="form-group">
+        <label for="gejala4"
+          >Gejala 4: Buah tampak normal tapi busuk di dalamnya (G004):</label
+        >
+        <input type="checkbox" id="gejala4" />
+      </div>
+      <div class="form-group">
+        <label for="gejala5"
+          >Gejala 5: Luka kecil pada buah yang berkembang membesar
+          (G005):</label
+        >
+        <input type="checkbox" id="gejala5" />
+      </div>
+      <div class="form-group">
+        <label for="gejala6">Gejala 6: Buah mengering (G006):</label>
+        <input type="checkbox" id="gejala6" />
+      </div>
+      <div class="form-group">
+        <label for="gejala7"
+          >Gejala 7: Kerusakan buah mencapai 20-90% (musim hujan) (G007):</label
+        >
+        <input type="checkbox" id="gejala7" />
+      </div>
+      <div class="form-group">
+        <label for="gejala8"
+          >Gejala 8: Lapisan putih seperti tepung di daun (G008):</label
+        >
+        <input type="checkbox" id="gejala8" />
+      </div>
+      <div class="form-group">
+        <label for="gejala9"
+          >Gejala 9: Daun mengalami malformasi (pertumbuhan tidak normal)
+          (G009):</label
+        >
+        <input type="checkbox" id="gejala9" />
+      </div>
+      <div class="form-group">
+        <label for="gejala10"
+          >Gejala 10: Daun mengering tanpa gugur (G010):</label
+        >
+        <input type="checkbox" id="gejala10" />
+      </div>
+      <div class="form-group">
+        <label for="gejala11">Gejala 11: Buah muda gugur (G011):</label>
+        <input type="checkbox" id="gejala11" />
+      </div>
+
+      <button onclick="diagnosis()">Diagnosa</button>
+      <div id="result" class="result"></div>
+    </div>
+
+    <script>
+      function diagnosis() {
+        // Ambil status gejala
+        const g1 = document.getElementById("gejala1").checked;
+        const g2 = document.getElementById("gejala2").checked;
+        const g3 = document.getElementById("gejala3").checked;
+        const g4 = document.getElementById("gejala4").checked;
+        const g5 = document.getElementById("gejala5").checked;
+        const g6 = document.getElementById("gejala6").checked;
+        const g7 = document.getElementById("gejala7").checked;
+        const g8 = document.getElementById("gejala8").checked;
+        const g9 = document.getElementById("gejala9").checked;
+        const g10 = document.getElementById("gejala10").checked;
+        const g11 = document.getElementById("gejala11").checked;
+
+        // Proses forward chaining
+        let result = "";
+
+        // Aturan 1: Penyakit Layu Bakteri
+        if (g1 && g2 && g3 && g4 && g5 && g6 && g7) {
+          result =
+            "Diagnosis: Penyakit Layu Bakteri (Pseudomonas solanacearum)";
+        }
+        // Aturan 2: Penyakit Antraknosa
+        else if (g6 && g7 && g8 && g9 && g10 && g11) {
+          result = "Diagnosis: Penyakit Antraknosa (Patek)";
+        }
+        // Aturan 3: Penyakit Embun Tepung
+        else if (g8 && g9 && g10) {
+          result = "Diagnosis: Penyakit Embun Tepung (Oidium sp.)";
+        }
+        // Penyakit lain
+        else {
+          result = "Diagnosis: Penyakit tidak diketahui.";
+        }
+
+        // Tampilkan hasil diagnosa
+        document.getElementById("result").innerText = result;
+      }
+    </script>
+  </body>
+</html>
