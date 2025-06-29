@@ -259,38 +259,36 @@
       });
 
       function diagnosis() {
-        const gejalaInput = {};
-        gejalaList.forEach((_, i) => {
-          const key = `G${(i + 1).toString().padStart(3, "0")}`;
-          gejalaInput[key] = document.getElementById(key).checked;
-        });
+  const gejalaInput = {};
+  gejalaList.forEach((_, i) => {
+    const key = `G${(i + 1).toString().padStart(3, "0")}`;
+    gejalaInput[key] = document.getElementById(key).checked;
+  });
 
-        let hasilOutput = "<strong>Hasil Diagnosa:</strong><br>";
-        let max = 0;
-        let tertinggi = "";
-        let ditemukan = false;
+  let hasilOutput = "<strong>Hasil Diagnosa:</strong><br>";
+  let hasil100 = [];
 
-        rules.forEach((rule) => {
-          const cocok = rule.gejala.filter(
-            (k) => gejalaInput[`G${k.toString().padStart(3, "0")}`]
-          ).length;
-          const total = rule.gejala.length;
-          const persen = Math.round((cocok / total) * 100);
-          hasilOutput += `- ${rule.nama}: ${persen}%<br>`;
+  rules.forEach((rule) => {
+    const cocok = rule.gejala.filter(
+      (k) => gejalaInput[`G${k.toString().padStart(3, "0")}`]
+    ).length;
+    const total = rule.gejala.length;
+    const persen = Math.round((cocok / total) * 100);
+    hasilOutput += `- ${rule.nama}: ${persen}%<br>`;
+    if (persen === 100) {
+      hasil100.push(rule.nama);
+    }
+  });
 
-          if (cocok === total) {
-            ditemukan = true;
-            if (persen > max) {
-              max = persen;
-              tertinggi = rule.nama;
-            }
-          }
-        });
+  if (hasil100.length > 0) {
+    hasilOutput += `<br><strong>Kesimpulan:</strong> Kemungkinan terbesar adalah:<br><strong>${hasil100.join(", ")}</strong>`;
+  } else {
+    hasilOutput += `<br><strong>Kesimpulan:</strong> Tidak ada penyakit yang terdeteksi dengan kepastian 100%.`;
+  }
 
-        hasilOutput += `<br><strong>Kesimpulan:</strong> Kemungkinan terbesar adalah <strong>$
-          {ditemukan ? tertinggi : "Penyakit tidak diketahui"}</strong>`;
-        document.getElementById("result").innerHTML = hasilOutput;
-      }
+  document.getElementById("result").innerHTML = hasilOutput;
+}
+
     </script>
   </body>
 </html>
