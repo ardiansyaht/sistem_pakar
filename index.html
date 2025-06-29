@@ -248,12 +248,23 @@
 
       function diagnosis() {
         const gejalaInput = {};
+        let semuaTercentang = true;
+
         gejalaList.forEach((_, i) => {
           const key = `G${(i + 1).toString().padStart(3, "0")}`;
-          gejalaInput[key] = document.getElementById(key).checked;
+          const isChecked = document.getElementById(key).checked;
+          gejalaInput[key] = isChecked;
+          if (!isChecked) semuaTercentang = false;
         });
 
         let hasilOutput = "<strong>Hasil Diagnosa:</strong><br>";
+
+        if (semuaTercentang) {
+          hasilOutput += `<br><strong>Kesimpulan:</strong> Penyakit tidak diketahui karena semua gejala dipilih.</strong>`;
+          document.getElementById("result").innerHTML = hasilOutput;
+          return;
+        }
+
         let max = 0;
         let tertinggi = "";
 
