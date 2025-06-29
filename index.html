@@ -74,6 +74,9 @@
     </style>
   </head>
   <body>
+    <body>
+    <div class="container">
+      <h1>Diagnosa Penyakit Tanaman Cabai</h1>
     <div class="container">
       <h2>Daftar Penyakit</h2>
       <table>
@@ -165,28 +168,33 @@
           </tr>
           <tr>
             <td>5</td>
+            <td>G022, G023, G024, G025</td>
+            <td>T05 - Kutu Kebul</td>
+          </tr>
+          <tr>
+            <td>6</td>
             <td>G016, G017, G018</td>
             <td>T07 - Virus Kuning</td>
           </tr>
           <tr>
-            <td>6</td>
+            <td>7</td>
             <td>G014, G015</td>
             <td>T06 - Layu Fusarium</td>
           </tr>
           <tr>
-            <td>7</td>
+            <td>8</td>
             <td>G019, G020</td>
             <td>T08 - Busuk Buah</td>
           </tr>
           <tr>
-            <td>8</td>
+            <td>9</td>
             <td>G021</td>
             <td>T09 - Busuk Akar</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Diagnosa Penyakit Tanaman Cabai</h2>
+      <h2>Gejala Penyakit Tanaman Cabai</h2>
       <form id="diagnosisForm">
         <div id="checkboxes"></div>
         <button type="button" onclick="diagnosis()">Diagnosa</button>
@@ -202,7 +210,7 @@
         "Buah tampak normal tapi busuk di dalamnya (coklat-hitam)",
         "Luka kecil pada buah yang berkembang membesar",
         "Buah mengering",
-        "Kerusakan buah mencapai 20-90% (musim hujan)",
+        "Kerusakan buah mencapai 20–90% (musim hujan)",
         "Lapisan putih seperti tepung di daun",
         "Daun mengalami malformasi (pertumbuhan tidak normal)",
         "Daun mengering tanpa gugur",
@@ -217,6 +225,10 @@
         "Bercak buah hitam/oranye/coklat mengkilap, sedikit terbenam dan berair",
         "Luka membesar, membentuk lingkaran konsentris pada buah",
         "Akar membusuk setelah hujan lebat",
+        "Adanya serangga putih kecil beterbangan saat daun disentuh (kutu kebul dewasa)",
+        "Permukaan daun bagian bawah dipenuhi nimfa kutu kebul",
+        "Daun menggulung ke atas dan menguning terang (klorosis akibat isapan)",
+        "Pertumbuhan tanaman kerdil dan merana",
       ];
 
       const rules = [
@@ -224,7 +236,7 @@
         { kode: "T02", nama: "Antraknosa", gejala: [6, 7, 8, 9, 10, 11] },
         { kode: "T03", nama: "Embun Tepung", gejala: [8, 9, 10] },
         { kode: "T04", nama: "Trips", gejala: [12, 13] },
-        { kode: "T05", nama: "Kutu Kebul", gejala: [14] },
+        { kode: "T05", nama: "Kutu Kebul", gejala: [22, 23, 24, 25] },
         { kode: "T06", nama: "Layu Fusarium", gejala: [14, 15] },
         { kode: "T07", nama: "Virus Kuning", gejala: [16, 17, 18] },
         { kode: "T08", nama: "Busuk Buah", gejala: [19, 20] },
@@ -248,25 +260,15 @@
 
       function diagnosis() {
         const gejalaInput = {};
-        let semuaTercentang = true;
-
         gejalaList.forEach((_, i) => {
           const key = `G${(i + 1).toString().padStart(3, "0")}`;
-          const isChecked = document.getElementById(key).checked;
-          gejalaInput[key] = isChecked;
-          if (!isChecked) semuaTercentang = false;
+          gejalaInput[key] = document.getElementById(key).checked;
         });
 
         let hasilOutput = "<strong>Hasil Diagnosa:</strong><br>";
-
-        if (semuaTercentang) {
-          hasilOutput += `<br><strong>Kesimpulan:</strong> Penyakit tidak diketahui karena semua gejala dipilih.</strong>`;
-          document.getElementById("result").innerHTML = hasilOutput;
-          return;
-        }
-
         let max = 0;
         let tertinggi = "";
+        let ditemukan = false;
 
         rules.forEach((rule) => {
           const cocok = rule.gejala.filter(
@@ -275,15 +277,18 @@
           const total = rule.gejala.length;
           const persen = Math.round((cocok / total) * 100);
           hasilOutput += `- ${rule.nama}: ${persen}%<br>`;
-          if (persen > max) {
-            max = persen;
-            tertinggi = rule.nama;
+
+          if (cocok === total) {
+            ditemukan = true;
+            if (persen > max) {
+              max = persen;
+              tertinggi = rule.nama;
+            }
           }
         });
 
-        hasilOutput += `<br><strong>Kesimpulan:</strong> Kemungkinan terbesar adalah <strong>${
-          tertinggi || "Penyakit tidak diketahui"
-        }</strong>`;
+        hasilOutput += `<br><strong>Kesimpulan:</strong> Kemungkinan terbesar adalah <strong>$
+          {ditemukan ? tertinggi : "Penyakit tidak diketahui"}</strong>`;
         document.getElementById("result").innerHTML = hasilOutput;
       }
     </script>
