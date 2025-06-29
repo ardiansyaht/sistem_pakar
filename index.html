@@ -18,7 +18,8 @@
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
-      h1 {
+      h1,
+      h2 {
         text-align: center;
         color: #4caf50;
       }
@@ -74,8 +75,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Tabel Penyakit -->
-      <h2>Daftar Penyakit Tanaman Cabai</h2>
+      <h2>Daftar Penyakit</h2>
       <table>
         <thead>
           <tr>
@@ -100,10 +100,39 @@
             <td>T03</td>
             <td>Penyakit Embun Tepung (Oidium sp.)</td>
           </tr>
+          <tr>
+            <td>4</td>
+            <td>T04</td>
+            <td>Trips (Triphs tabacci)</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>T05</td>
+            <td>Kutu Kebul (Vektor Virus Kuning - Gemini Virus)</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>T06</td>
+            <td>Layu Fusarium (Fusarium oxysporum)</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>T07</td>
+            <td>Virus Kuning (Gemini Virus)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>T08</td>
+            <td>Busuk Buah (Antraknose, Colletotrichum spp.)</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>T09</td>
+            <td>Busuk Akar (Phytophthora capsici)</td>
+          </tr>
         </tbody>
       </table>
 
-      <!-- Tabel Aturan Diagnosa (IF-THEN) -->
       <h2>Aturan Diagnosa (IF-THEN)</h2>
       <table>
         <thead>
@@ -116,134 +145,135 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>
-              IF G001 is true AND G002 is true AND G003 is true AND G004 is true
-              AND G005 is true AND G006 is true AND G007 is true
-            </td>
-            <td>
-              THEN Diagnosis: Penyakit Layu Bakteri (Pseudomonas solanacearum)
-            </td>
+            <td>G001, G002, G003, G004, G005, G006, G007</td>
+            <td>T01 - Layu Bakteri</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>
-              IF G006 is true AND G007 is true AND G008 is true AND G009 is true
-              AND G010 is true AND G011 is true
-            </td>
-            <td>THEN Diagnosis: Penyakit Antraknosa (Patek)</td>
+            <td>G006, G007, G008, G009, G010, G011</td>
+            <td>T02 - Antraknosa</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>IF G008 is true AND G009 is true AND G010 is true</td>
-            <td>THEN Diagnosis: Penyakit Embun Tepung (Oidium sp.)</td>
+            <td>G008, G009, G010</td>
+            <td>T03 - Embun Tepung</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>G012, G013</td>
+            <td>T04 - Trips</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>G016, G017, G018</td>
+            <td>T07 - Virus Kuning</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>G014, G015</td>
+            <td>T06 - Layu Fusarium</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>G019, G020</td>
+            <td>T08 - Busuk Buah</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>G021</td>
+            <td>T09 - Busuk Akar</td>
           </tr>
         </tbody>
       </table>
 
-      <h1>Diagnosa Penyakit Tanaman Cabai</h1>
-
-      <!-- Form untuk memilih gejala -->
-      <div class="form-group">
-        <label for="gejala1">Gejala 1: Daun kuning pucat (G001):</label>
-        <input type="checkbox" id="gejala1" />
-      </div>
-      <div class="form-group">
-        <label for="gejala2">Gejala 2: Tanaman kerdil dan layu (G002):</label>
-        <input type="checkbox" id="gejala2" />
-      </div>
-      <div class="form-group">
-        <label for="gejala3">Gejala 3: Batang coklat kemerahan (G003):</label>
-        <input type="checkbox" id="gejala3" />
-      </div>
-      <div class="form-group">
-        <label for="gejala4"
-          >Gejala 4: Buah tampak normal tapi busuk di dalamnya (G004):</label
-        >
-        <input type="checkbox" id="gejala4" />
-      </div>
-      <div class="form-group">
-        <label for="gejala5"
-          >Gejala 5: Luka kecil pada buah yang berkembang membesar
-          (G005):</label
-        >
-        <input type="checkbox" id="gejala5" />
-      </div>
-      <div class="form-group">
-        <label for="gejala6">Gejala 6: Buah mengering (G006):</label>
-        <input type="checkbox" id="gejala6" />
-      </div>
-      <div class="form-group">
-        <label for="gejala7"
-          >Gejala 7: Kerusakan buah mencapai 20-90% (musim hujan) (G007):</label
-        >
-        <input type="checkbox" id="gejala7" />
-      </div>
-      <div class="form-group">
-        <label for="gejala8"
-          >Gejala 8: Lapisan putih seperti tepung di daun (G008):</label
-        >
-        <input type="checkbox" id="gejala8" />
-      </div>
-      <div class="form-group">
-        <label for="gejala9"
-          >Gejala 9: Daun mengalami malformasi (pertumbuhan tidak normal)
-          (G009):</label
-        >
-        <input type="checkbox" id="gejala9" />
-      </div>
-      <div class="form-group">
-        <label for="gejala10"
-          >Gejala 10: Daun mengering tanpa gugur (G010):</label
-        >
-        <input type="checkbox" id="gejala10" />
-      </div>
-      <div class="form-group">
-        <label for="gejala11">Gejala 11: Buah muda gugur (G011):</label>
-        <input type="checkbox" id="gejala11" />
-      </div>
-
-      <button onclick="diagnosis()">Diagnosa</button>
+      <h2>Diagnosa Penyakit Tanaman Cabai</h2>
+      <form id="diagnosisForm">
+        <div id="checkboxes"></div>
+        <button type="button" onclick="diagnosis()">Diagnosa</button>
+      </form>
       <div id="result" class="result"></div>
     </div>
 
     <script>
+      const gejalaList = [
+        "Daun kuning pucat mulai dari pangkal ke ujung",
+        "Tanaman kerdil dan layu",
+        "Batang berwarna coklat kemerahan saat dipotong",
+        "Buah tampak normal tapi busuk di dalamnya (coklat-hitam)",
+        "Luka kecil pada buah yang berkembang membesar",
+        "Buah mengering",
+        "Kerusakan buah mencapai 20-90% (musim hujan)",
+        "Lapisan putih seperti tepung di daun",
+        "Daun mengalami malformasi (pertumbuhan tidak normal)",
+        "Daun mengering tanpa gugur",
+        "Buah muda gugur",
+        "Daun terdapat strip keperakan",
+        "Daun muda keriput dan kering",
+        "Daun menguning dari bawah ke atas",
+        "Akar dan batang bagian bawah berwarna coklat",
+        "Daun pucuk menunjukkan vein clearing",
+        "Tulang daun menebal dan menggulung ke atas",
+        "Daun mengecil, kuning terang, tanaman kerdil dan tidak berbuah",
+        "Bercak buah hitam/oranye/coklat mengkilap, sedikit terbenam dan berair",
+        "Luka membesar, membentuk lingkaran konsentris pada buah",
+        "Akar membusuk setelah hujan lebat",
+      ];
+
+      const rules = [
+        { kode: "T01", nama: "Layu Bakteri", gejala: [1, 2, 3, 4, 5, 6, 7] },
+        { kode: "T02", nama: "Antraknosa", gejala: [6, 7, 8, 9, 10, 11] },
+        { kode: "T03", nama: "Embun Tepung", gejala: [8, 9, 10] },
+        { kode: "T04", nama: "Trips", gejala: [12, 13] },
+        { kode: "T05", nama: "Kutu Kebul", gejala: [14] },
+        { kode: "T06", nama: "Layu Fusarium", gejala: [14, 15] },
+        { kode: "T07", nama: "Virus Kuning", gejala: [16, 17, 18] },
+        { kode: "T08", nama: "Busuk Buah", gejala: [19, 20] },
+        { kode: "T09", nama: "Busuk Akar", gejala: [21] },
+      ];
+
+      const container = document.getElementById("checkboxes");
+      gejalaList.forEach((desc, index) => {
+        const div = document.createElement("div");
+        div.className = "form-group";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `G${(index + 1).toString().padStart(3, "0")}`;
+        const label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.innerText = `Gejala ${index + 1}: ${desc} (${checkbox.id})`;
+        div.appendChild(label);
+        div.appendChild(checkbox);
+        container.appendChild(div);
+      });
+
       function diagnosis() {
-        // Ambil status gejala
-        const g1 = document.getElementById("gejala1").checked;
-        const g2 = document.getElementById("gejala2").checked;
-        const g3 = document.getElementById("gejala3").checked;
-        const g4 = document.getElementById("gejala4").checked;
-        const g5 = document.getElementById("gejala5").checked;
-        const g6 = document.getElementById("gejala6").checked;
-        const g7 = document.getElementById("gejala7").checked;
-        const g8 = document.getElementById("gejala8").checked;
-        const g9 = document.getElementById("gejala9").checked;
-        const g10 = document.getElementById("gejala10").checked;
-        const g11 = document.getElementById("gejala11").checked;
+        const gejalaInput = {};
+        gejalaList.forEach((_, i) => {
+          const key = `G${(i + 1).toString().padStart(3, "0")}`;
+          gejalaInput[key] = document.getElementById(key).checked;
+        });
 
-        // Proses forward chaining
-        let result = "";
+        let hasilOutput = "<strong>Hasil Diagnosa:</strong><br>";
+        let max = 0;
+        let tertinggi = "";
 
-        // Aturan 1: Penyakit Layu Bakteri
-        if (g1 && g2 && g3 && g4 && g5 && g6 && g7) {
-          result =
-            "Diagnosis: Penyakit Layu Bakteri (Pseudomonas solanacearum)";
-        }
-        // Aturan 2: Penyakit Antraknosa
-        else if (g6 && g7 && g8 && g9 && g10 && g11) {
-          result = "Diagnosis: Penyakit Antraknosa (Patek)";
-        }
-        // Aturan 3: Penyakit Embun Tepung
-        else if (g8 && g9 && g10) {
-          result = "Diagnosis: Penyakit Embun Tepung (Oidium sp.)";
-        }
-        // Penyakit lain
-        else {
-          result = "Diagnosis: Penyakit tidak diketahui.";
-        }
+        rules.forEach((rule) => {
+          const cocok = rule.gejala.filter(
+            (k) => gejalaInput[`G${k.toString().padStart(3, "0")}`]
+          ).length;
+          const total = rule.gejala.length;
+          const persen = Math.round((cocok / total) * 100);
+          hasilOutput += `- ${rule.nama}: ${persen}%<br>`;
+          if (persen > max) {
+            max = persen;
+            tertinggi = rule.nama;
+          }
+        });
 
-        // Tampilkan hasil diagnosa
-        document.getElementById("result").innerText = result;
+        hasilOutput += `<br><strong>Kesimpulan:</strong> Kemungkinan terbesar adalah <strong>${
+          tertinggi || "Penyakit tidak diketahui"
+        }</strong>`;
+        document.getElementById("result").innerHTML = hasilOutput;
       }
     </script>
   </body>
